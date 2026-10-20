@@ -1,0 +1,158 @@
+/*
+ * Startup overlay injected into index.html before the DSH application bundle.
+ * This file must not depend on any client plugin CSS: it is applied while the
+ * app is still booting.
+ */
+
+html[data-dbs-boot-fg="on"] {
+  background-color: #05070b !important;
+}
+
+html[data-dbs-boot-fg="on"] body {
+  background-color: #05070b !important;
+}
+
+.dbs-boot {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  color: #fff;
+  font-family: system-ui, -apple-system, "Segoe UI", "Microsoft YaHei", sans-serif;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.dbs-boot[data-mode="fullscreen"] {
+  z-index: 2147483647;
+  background:
+    radial-gradient(circle at 50% 42%, #101a28 0%, #080d15 55%, #04070b 100%);
+}
+
+.dbs-boot[data-mode="background"] {
+  z-index: -1;
+  pointer-events: none;
+  background: #05070b;
+}
+
+.dbs-boot-media {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.dbs-boot-media > video,
+.dbs-boot-media > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  outline: 0;
+  max-width: none;
+  max-height: none;
+  background: transparent;
+  opacity: 0;
+  transition: opacity 120ms linear;
+}
+
+.dbs-boot-media > video[data-shown="1"],
+.dbs-boot-media > img[data-shown="1"] {
+  opacity: 1;
+}
+
+.dbs-boot[data-mode="fullscreen"] .dbs-boot-hint {
+  position: absolute;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  z-index: 2;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: rgba(8, 10, 14, 0.72);
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  pointer-events: none;
+}
+
+.dbs-boot-skip {
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  height: 30px;
+  padding: 0 13px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 999px;
+  background: rgba(8, 10, 14, 0.82);
+  color: rgba(255, 255, 255, 0.9);
+  font: inherit;
+  font-size: 11.5px;
+  cursor: pointer;
+  transition: background 160ms ease, border-color 160ms ease, opacity 200ms ease;
+  -webkit-app-region: no-drag;
+}
+
+.dbs-boot-skip:hover {
+  background: rgba(20, 24, 32, 0.7);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.dbs-boot-skip:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.dbs-boot-skip-fixed {
+  position: fixed;
+  top: 18px;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  transform: translateX(-50%);
+  z-index: 2147483647;
+  pointer-events: auto;
+}
+
+.dbs-boot[data-state="leaving"] {
+  opacity: 0;
+  transition: opacity var(--dbs-boot-fade, 700ms) ease;
+  pointer-events: none;
+}
+
+.dbs-boot[data-state="leaving"] .dbs-boot-skip,
+.dbs-boot-skip[data-state="leaving"] {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Mode B: make existing theme surfaces translucent immediately, so the
+ * injected layer is visible even before the normal client bundle applies its
+ * own token overrides. These values match the plugin's default dark/light
+ * surface values. */
+html[data-dbs-boot-bg="on"] body {
+  background-color: transparent !important;
+  --dsw-alias-bg-base: rgba(18, 20, 26, 0.34) !important;
+  --dsw-alias-bg-layer-1: rgba(24, 27, 35, 0.46) !important;
+  --dsw-alias-bg-layer-2: rgba(31, 35, 45, 0.54) !important;
+  --dsw-alias-bg-layer-3: rgba(38, 42, 53, 0.60) !important;
+  --dsw-specific-sidebar-fill: rgba(17, 19, 25, 0.30) !important;
+}
+
+html[data-dbs-boot-bg="on"] body:not([data-ds-dark-theme]) {
+  --dsw-alias-bg-base: rgba(255, 255, 255, 0.62) !important;
+  --dsw-alias-bg-layer-1: rgba(255, 255, 255, 0.72) !important;
+  --dsw-alias-bg-layer-2: rgba(255, 255, 255, 0.80) !important;
+  --dsw-alias-bg-layer-3: rgba(255, 255, 255, 0.86) !important;
+  --dsw-specific-sidebar-fill: rgba(249, 250, 251, 0.64) !important;
+}
+
+html[data-dbs-boot-bg="on"] {
+  background-color: #0e1116 !important;
+}
+
+html[data-dbs-boot-bg="on"]:not(:has(body[data-ds-dark-theme])) {
+  background-color: #eef1f5 !important;
+}

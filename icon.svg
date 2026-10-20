@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="DSH Background Studio">
+  <defs>
+    <linearGradient id="dbs-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2b6cb0"/>
+      <stop offset="1" stop-color="#7c3aed"/>
+    </linearGradient>
+    <linearGradient id="dbs-sun" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffd166"/>
+      <stop offset="1" stop-color="#f97316"/>
+    </linearGradient>
+  </defs>
+  <rect x="2" y="2" width="60" height="60" rx="15" fill="url(#dbs-bg)"/>
+  <circle cx="44" cy="20" r="7" fill="url(#dbs-sun)"/>
+  <path d="M8 48 L23 30 L34 43 L42 34 L56 50 L56 54 Q56 58 52 58 L12 58 Q8 58 8 54 Z" fill="#e8f4ff" opacity="0.94"/>
+  <path d="M8 50 L20 38 L28 46 L36 36 L44 44 L56 36 L56 54 Q56 58 52 58 L12 58 Q8 58 8 54 Z" fill="#0b2545" opacity="0.35"/>
+  <rect x="8" y="8" width="18" height="4" rx="2" fill="#ffffff" opacity="0.55"/>
+</svg>

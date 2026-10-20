@@ -1,0 +1,14 @@
+﻿node_modules/
+.verify-home/
+.perf/
+scripts/
+dist/
+*.log
+*.tmp
+state.json
+state.json.*
+README.internal.md
+.DS_Store
+Thumbs.db
+docs/
+

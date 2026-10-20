@@ -1,0 +1,57 @@
+{
+  "name": "dsh-background-studio",
+  "version": "0.2.2",
+  "private": true,
+  "description": "DSH Background Studio — 图片 / 视频 / GIF 多媒体背景、独立音频、自动轮播与启动动画。",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ZMT123-ZMT/dsh-background-studio.git"
+  },
+  "homepage": "https://github.com/ZMT123-ZMT/dsh-background-studio",
+  "bugs": {
+    "url": "https://github.com/ZMT123-ZMT/dsh-background-studio/issues"
+  },
+  "author": "ZMT123-ZMT",
+  "type": "module",
+  "icon": "./icon.svg",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "lib/**/*.js",
+    "runtime/**",
+    "locale/*.json",
+    "icon.svg",
+    "cordis.patch.yml",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "node build.mjs",
+    "check": "node --check client.js && node --check index.js",
+    "test": "node --test tests/*.test.mjs"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-conversation"
+      ]
+    },
+    "compatibility": {
+      "dshReleases": {
+        "0.2.1-rc.2": "compatible"
+      }
+    }
+  },
+  "license": "MIT"
+}
